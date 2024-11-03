@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dana Abadi Universitas Sriwijaya</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        (function () {
+            emailjs.init("jUPxcauyi9vhejvGk"); // Replace with your EmailJS user ID
+        })();
+    </script>
+</head>
+<body class="font-roboto">
+    <!-- Header -->
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto flex flex-wrap justify-between items-center py-4 px-4 md:px-6">
+            <a href="index.html" class="flex items-center mb-2 md:mb-0">
+                <img src="logo.png" alt="Universitas Sriwijaya Logo" class="h-12 w-12 mr-2">
+                <div class="leading-none">
+                    <div class="text-lg text-gray-600 font-reguler">Dana Abadi</div>
+                    <div class="text-lg text-gray-600 font-reguler">Universitas Sriwijaya</div>
+                </div>
+            </a>
+            <!-- Hamburger button -->
+            <button id="navbar-toggle" class="block md:hidden focus:outline-none">
+                <span class="text-gray-700">
+                    <i class="fas fa-bars fa-lg"></i>
+                </span>
+            </button>
+            <!-- Navigation -->
+            <nav id="navbar" class="hidden md:flex space-x-4 text-sm md:text-base">
+                <a href="about.html" class="text-gray-700 hover:text-gray-900">Tentang</a>
+                <a href="Donate.html" class="text-gray-700 hover:text-gray-900">Donasi Dana Abadi</a>
+                <a href="program.html" class="text-gray-700 hover:text-gray-900">Program</a>
+                <a href="index.html" class="text-gray-700 hover:text-gray-900">Cara Berdonasi</a>
+                <a href="contact.html" class="text-gray-700 hover:text-gray-900">Kontak</a>
+            </nav>
+        </div>
+    </header>
+    <main class="flex justify-center items-center h-screen">
+        <div class="bg-yellow-500 p-8 rounded-lg w-96 mt-40">
+            <h2 class="text-2xl font-bold mb-4">Identitas Donatur</h2>
+            <form onsubmit="sendEmail(); return false;" class="flex flex-col items-center">
+                <div class="mb-4">
+                    <label class="block text-black" for="nama">Nama</label>
+                    <input type="text" id="Nama" class="w-full p-2 rounded-lg border border-gray-300" placeholder="Nama" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-black" for="whatsapp">Nomor HP/Whatsapp Aktif</label>
+                    <input type="number" id="whatsapp" class="w-full p-2 rounded-lg border border-gray-300" placeholder="Whatsapp" required />
+                </div>            
+                <div class="mb-4">
+                    <label class="block text-black" for="email">Email</label>
+                    <input type="email" id="email" class="w-full p-2 rounded-lg border border-gray-300" placeholder="Email" required/>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-black" for="nominal">Nominal</label>
+                    <input type="number" id="nominal" class="w-full p-2 rounded-lg border border-gray-300" placeholder="Rp." required/>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-black" for="fakultas">Fakultas</label>
+                    <input type="text" id="Fakultas" class="w-full p-2 rounded-lg border border-gray-300" placeholder="Fakultas" required/>
+                </div>
+                <div class="flex justify-end">
+                    <button class="bg-black text-white p-2 rounded-lg" type="submit">
+                        Selanjutnya
+                    </button>
+                </div>
+            </form>
+            <div id="message" class="mt-4" style="display: none;"></div>
+        </div>
+    </main>
+    <footer class="text-center p-4 mt-40">
+        <p class="text-black">2022-2024© Direktorat Sistem Informasi dan Transformasi Digital</p>
+    </footer>
+    <script>
+        async function sendEmail() {
+            // Gather data from the form
+            const nama = document.getElementById("Nama").value;
+            const whatsapp = document.getElementById("whatsapp").value;
+            const email = document.getElementById("email").value;
+            const nominal = document.getElementById("nominal").value;
+            const fakultas = document.getElementById("Fakultas").value;
+
+            clearMessages(); // Clear previous messages
+
+            // Validate input
+            if (!nama || !whatsapp || !email || !nominal || !fakultas) {
+                displayMessage("Semua kolom harus diisi.", "error");
+                return;
+            }
+
+            try {
+                // Send email using EmailJS
+                await emailjs.send("service_hk5gvjq", "template_estqi2b", {
+                    nama,
+                    whatsapp,
+                    email,
+                    nominal,
+                    fakultas
+                });
+
+                displayMessage("Data berhasil dikirim.", "success");
+
+                // Redirect to atm.html after 1000 seconds
+                setTimeout(() => {
+                    window.location.href = 'atm.html';
+                }, 100); // Change to 1000 milliseconds for a 1-second delay
+            } catch (error) {
+                displayMessage("Gagal mengirim email. Silakan coba lagi.", "error");
+            }
+        }
+
+        function displayMessage(message, type) {
+            var messageElement = document.getElementById("message");
+            messageElement.textContent = message;
+            messageElement.className = type === "success" ? "text-green-500" : "text-red-500";
+            messageElement.style.display = "block";
+        }
+
+        function clearMessages() {
+            var messageElement = document.getElementById("message");
+            messageElement.textContent = "";
+            messageElement.style.display = "none";
+        }
+
+        // Toggle mobile menu
+        document.getElementById('mobile-menu-button').addEventListener('click', () => {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

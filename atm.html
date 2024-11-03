@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Donasi</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+
+    <main class="flex flex-col items-center justify-center bg-yellow-500 rounded-lg p-8 w-96">
+        <h1 class="text-center text-black font-bold text-xl mb-4">
+            Silahkan men-copy Nomor Virtual Account dan Nominal Donasi
+        </h1>
+        <div class="w-full mb-4 flex items-center">
+            <!-- Logo Bank BRI -->
+            <img 
+                src="brilogo.png" 
+                alt="Bank BRI Logo" 
+                class="h-10 w-auto mr-2"
+            />
+            
+            <!-- Input Field -->
+            <input 
+                id="nameInput" 
+                class="w-full p-2 rounded bg-gray-200 cursor-pointer" 
+                readonly 
+                value="Tabah Dwi Sulistyo" 
+            />
+            
+            <!-- Copy Icon/Text -->
+            <span 
+                class="ml-2 cursor-pointer text-gray-600 hover:text-gray-800" 
+                onclick="copyToClipboard('nameInput')" 
+                title="Click to copy"
+            >
+            </span>
+        </div>
+        <div class="w-full mb-4 flex items-center">
+            <input 
+                id="idInput" 
+                class="w-full p-2 rounded bg-gray-200 cursor-pointer" 
+                readonly 
+                value="1378-0100-4371-53" 
+            />
+            <span 
+                class="ml-2 cursor-pointer text-gray-600 hover:text-gray-800" 
+                onclick="copyToClipboard('idInput')" 
+                title="Click to copy"
+            >
+                📋 <!-- Clipboard symbol -->
+            </span>
+        </div>
+        <h2 class="text-center text-black font-bold text-xl mb-4">
+            Terima Kasih !!!
+        </h2>
+        <a href="index.html" class="bg-black text-white py-2 px-4 rounded">
+            Selesai
+        </a>
+    </main>
+    <script>
+        function copyToClipboard(elementId) {
+            const inputField = document.getElementById(elementId);
+            inputField.select(); // Select the text
+            document.execCommand('copy'); // Copy the text to clipboard
+            alert('Copied: ' + inputField.value); // Optional: alert the user
+        }
+        </script>
+
+</body>
+</html>

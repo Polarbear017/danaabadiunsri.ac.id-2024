@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dana Abadi Universitas Sriwijaya</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-roboto bg-gray-100 flex flex-col min-h-screen">
+
+   <!-- Header -->
+   <header class="bg-white shadow-md">
+    <div class="container mx-auto flex flex-wrap justify-between items-center py-4 px-4 md:px-6">
+        <a href="index.html" class="flex items-center mb-2 md:mb-0">
+            <img src="logo.png" alt="Universitas Sriwijaya Logo" class="h-12 w-12 mr-2">
+            <div class="leading-none">
+                <div class="text-lg text-gray-600 font-reguler">Dana Abadi</div>
+                <div class="text-lg text-gray-600 font-reguler">Universitas Sriwijaya</div>
+            </div>
+            
+        </a>
+        <!-- Hamburger button -->
+        <button id="navbar-toggle" class="block md:hidden focus:outline-none">
+            <span class="text-gray-700">
+                <i class="fas fa-bars fa-lg"></i>
+            </span>
+        </button>
+        <!-- Navigation -->
+        <nav id="navbar" class="hidden md:flex space-x-4 text-sm md:text-base">
+            <a href="about.html" class="text-gray-700 hover:text-gray-900">Tentang</a>
+            <a href="Donate.html" class="text-gray-700 hover:text-gray-900">Donasi Dana Abadi</a>
+            <a href="program.html" class="text-gray-700 hover:text-gray-900">Program</a>
+            <a href="index.html" class="text-gray-700 hover:text-gray-900">Cara Berdonasi</a>
+            <a href="contact.html" class="text-gray-700 hover:text-gray-900">Kontak</a>
+        </nav>
+    </div>
+    <!-- Mobile Navigation -->
+    <div id="mobile-navbar" class="hidden md:hidden">
+        <nav class="flex flex-col space-y-2 px-4 pb-4">
+            <a href="about.html" class="text-gray-700 hover:text-gray-900">Tentang</a>
+            <a href="Donate.html" class="text-gray-700 hover:text-gray-900">Donasi Dana Abadi</a>
+            <a href="program.html" class="text-gray-700 hover:text-gray-900">Program</a>
+            <a href="index.html" class="text-gray-700 hover:text-gray-900">Cara Berdonasi</a>
+            <a href="contact.html" class="text-gray-700 hover:text-gray-900">Kontak</a>
+        </nav>
+    </div>
+</header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex items-center justify-center">
+        <div class="text-center">
+            <h1 class="text-4xl font-bold text-gray-800">Halaman ini sedang dipersiapkan</h1>
+            <p class="mt-4 text-gray-600">Silakan kembali lagi nanti.</p>
+            <a href="index.html" class="bg-yellow-500 text-white py-3 px-6 rounded-lg text-lg font-bold mt-6 inline-block hover:bg-yellow-600 transition duration-200">
+                KEMBALI KE HALAMAN UTAMA
+            </a>
+        </div>
+    </main>
+    <script>
+        // JavaScript to toggle mobile navigation
+        const navbarToggle = document.getElementById('navbar-toggle');
+        const mobileNavbar = document.getElementById('mobile-navbar');
+
+        navbarToggle.addEventListener('click', () => {
+            mobileNavbar.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
